@@ -125,6 +125,7 @@ export default function Predict() {
     setLoading(true);
     setPositiveResult(null);
     setNegativeResult(null);
+    setResult(null)
 
 
     const data = [
@@ -192,6 +193,7 @@ export default function Predict() {
         });
         setPositiveResult(null);
         setNegativeResult(null);
+        setResult(null)
 
     }
     setLoading(false);
