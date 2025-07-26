@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { DiabetesReportModalProps, PositiveData } from './types';
+import { DiabetesReportModalProps } from './types';
 import { FaFileMedical, FaHeartbeat, FaStethoscope, FaPills, FaUsers, FaBed, FaPrint, FaDiagnoses } from 'react-icons/fa';
 import { RiUserHeartLine } from 'react-icons/ri';
 

@@ -21,7 +21,12 @@ type ChartData = {
 export default function PieChart() {
   const chartRef = useRef<HTMLCanvasElement>(null);
   const chartInstanceRef = useRef<ChartJS | null>(null);
-  const [history, setHistory] = useState<any[]>([]);
+  const [history, setHistory] = useState<{
+      prediction: string;
+      confidence: number | null;
+      gender: string
+      name: string;
+    }[]>([]);
   const [loading, setLoading] = useState(false)
   const [isGenderAvailable, setIsGenderAvailable] = useState(false)
   const [chartData, setChartData] = useState<ChartData>({

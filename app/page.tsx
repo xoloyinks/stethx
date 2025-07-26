@@ -4,7 +4,7 @@ import auth from "@/components/auth";
 import Intro from "@/components/intro";
 import NewsCard from "@/components/NewsCard";
 import PieChart from "@/components/pie";
-import { NewsArticle } from "@/components/types";
+import { NewsArticle, predictionData } from "@/components/types";
 import { useEffect, useState } from "react";
 import { GiStethoscope } from "react-icons/gi";
 import Cookies from "js-cookie";
@@ -14,7 +14,7 @@ export default function Home() {
   const [introVisible, setIntroVisible] = useState(false);
   const [myNews, setNews] = useState<NewsArticle[] | undefined>(undefined);
   const [loading, setLoading] = useState(false);
-  const [history, setHistory] = useState<any[]>([]);
+  const [history, setHistory] = useState([]);
   const [mostCommonRiskFactor, setMostCommonRiskFactor] = useState<string>("---");
   const [mostCommonContributingFactor, setMostCommonContributingFactor] = useState<string>("---");
   const [mostAffectedGender, setMostAffectedGender] = useState<string>("---");
@@ -22,6 +22,9 @@ export default function Home() {
   useEffect(() => {
     auth();
     const hasShownIntro = sessionStorage.getItem("intro_shown");
+    if(history){
+      console.log('Good to go!')
+    }
 
     if (!hasShownIntro) {
       setIntroVisible(true);
@@ -91,8 +94,8 @@ export default function Home() {
         // Analyze history for risk factors, contributing factors, and gender
         if (historyData.length > 0) {
           // Most Common Risk Factor
-         let riskFactorCounts: { [key: string]: number } = {};
-          historyData.forEach((record: any) => {
+         const riskFactorCounts: { [key: string]: number } = {};
+          historyData.forEach((record: predictionData) => {
             const decisionSupport = JSON.parse(record.decision_support || "{}");
             const riskFactor = decisionSupport.key_risk_factor || "Unknown";
             riskFactorCounts[riskFactor] = (riskFactorCounts[riskFactor] || 0) + 1;
@@ -105,7 +108,7 @@ export default function Home() {
 
           // Most Common Contributing Factor
           const contributingFactorCounts: { [key: string]: number } = {};
-          historyData.forEach((record: any) => {
+          historyData.forEach((record: predictionData) => {
             const decisionSupport = JSON.parse(record.decision_support || "{}");
             const factor =
               decisionSupport.key_contributing_factor || decisionSupport.key_risk_factor || "Unknown";
@@ -120,8 +123,8 @@ export default function Home() {
           // Most Affected Gender (for Diabetic patients)
           const genderCounts: { [key: string]: number } = {};
           historyData
-            .filter((record: any) => record.prediction === "Diabetic")
-            .forEach((record: any) => {
+            .filter((record: predictionData) => record.prediction === "Diabetic")
+            .forEach((record: predictionData) => {
               const gender = record.gender || "None";
               genderCounts[gender] = (genderCounts[gender] || 0) + 1;
             });

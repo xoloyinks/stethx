@@ -4,10 +4,9 @@ import RiskReportModal from "@/components/negative";
 import DiabetesReportModal from "@/components/positive";
 import React, { useEffect, useState } from "react";
 import { VscRobot } from "react-icons/vsc";
-import { usePathname } from "next/navigation";
 import auth from "@/components/auth";
 import Cookies from "js-cookie"
-import { predictionData as pt } from "@/components/types";
+import { PositiveData, predictionData as pt, RiskAssessmentData } from "@/components/types";
 import { toast, ToastContainer } from "react-toastify";
 const smokingOptions = [
   { label: "Never", value: 4 },
@@ -34,7 +33,6 @@ const smokingConversion = (smokingId: string) => {
 }
 
 export default function Predict() {
-  const path = usePathname();
   const [form, setForm] = useState({
     gender: "0",
     age: "",
@@ -47,13 +45,23 @@ export default function Predict() {
     name: "",
   });
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<{
+  const [postiveResult, setPositiveResult] = useState<{
     prediction: string;
     confidence: number | null;
-    clinical_decision_support: any;
+    clinical_decision_support: PositiveData;
     name: string;
   } | null>(null);
-  const [error, setError] = useState<string | null>(null);
+   const [negativeResult, setNegativeResult] = useState<{
+    prediction: string;
+    confidence: number | null;
+    clinical_decision_support: RiskAssessmentData;
+    name: string;
+  } | null>(null);
+   const [result, setResult] = useState<{
+    prediction: string;
+    confidence: number | null;
+    name: string;
+  } | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isNegModalOpen, setIsNegModalOpen] = useState<boolean>(false);
   const [predictionDetails, setPredictionDetails] = useState<undefined | pt>();
@@ -115,8 +123,9 @@ export default function Predict() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setResult(null);
-    setError(null);
+    setPositiveResult(null);
+    setNegativeResult(null);
+
 
     const data = [
       Number(form.gender),
@@ -145,8 +154,10 @@ export default function Predict() {
       if (results) {
         if (results.prediction === "Diabetic") {
           setIsModalOpen(true);
+          setPositiveResult(results);
         } else {
           setIsNegModalOpen(true);
+          setNegativeResult(results);
         }
       }
       const predictionData = {
@@ -167,9 +178,9 @@ export default function Predict() {
 
 
       setPredictionDetails(predictionData);
-      setResult(results);
-    } catch (err: any) {
-      toast.error(err.message, {
+    } catch (err) {
+      const error = err as Error
+      toast.error(error.message, {
                             position: "top-center",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -179,8 +190,9 @@ export default function Predict() {
                             progress: undefined,
                             theme: "dark",
         });
-      setResult(null);
-      setError(err.message || "Error connecting to prediction service.");
+        setPositiveResult(null);
+        setNegativeResult(null);
+
     }
     setLoading(false);
   };
@@ -371,24 +383,21 @@ export default function Predict() {
             {loading ? <img src="/images/Siri.gif" alt="Ai animation" className="w-16 h-16 mx-auto" /> : "Predict"}
           </button>
         </form>
-        {result &&
-          (result.prediction === "Diabetic" ? (
+        {postiveResult &&
             <DiabetesReportModal
-              patientData={result.clinical_decision_support}
-              patientName={result.name}
-              patientConfidence={result.confidence || 0}
+              patientData={postiveResult.clinical_decision_support}
+              patientName={postiveResult.name}
+              patientConfidence={postiveResult.confidence || 0}
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
-            />
-          ) : (
-            <RiskReportModal
+            />}
+            {negativeResult && <RiskReportModal
               isOpen={isNegModalOpen}
               onClose={() => setIsNegModalOpen(false)}
-              patientName={result.name}
-              patientConfidence={result.confidence || 0}
-              patientData={result.clinical_decision_support}
-            />
-          ))}
+              patientName={negativeResult.name}
+              patientConfidence={negativeResult.confidence || 0}
+              patientData={negativeResult.clinical_decision_support}
+            />}
       </div>
     </section>
   );

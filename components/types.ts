@@ -37,7 +37,7 @@ export type predictionData = {
     hypertension: boolean;
     blood_glucose_level: string;
     bmi: string;
-    prediction: any;
+    prediction: string;
     decision_support: string;
     confidence: string | number;
     createdAt?: Date;
