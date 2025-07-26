@@ -48,7 +48,7 @@ export default function Auth() {
         e.preventDefault();
         setLoading(true)
        try {
-        const res = await fetch('http://localhost:3001/login', {
+        const res = await fetch('https://stethx-backend.onrender.com/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

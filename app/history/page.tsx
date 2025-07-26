@@ -30,7 +30,7 @@ export default function History() {
       const token = Cookies.get("token");
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:3001/history", {
+        const response = await fetch("https://stethx-backend.onrender.com/history", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

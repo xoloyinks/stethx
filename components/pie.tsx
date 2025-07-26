@@ -60,7 +60,7 @@ export default function PieChart() {
           return;
         }
 
-        const historyResponse = await fetch("http://localhost:3001/history", {
+        const historyResponse = await fetch("https://stethx-backend.onrender.com/history", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

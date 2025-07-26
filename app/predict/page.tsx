@@ -73,7 +73,7 @@ export default function Predict() {
     const token = Cookies.get('token');
 
     const saveDetails = async () => {
-        const res = await fetch('http://localhost:3001/prediction', {
+        const res = await fetch('https://stethx-backend.onrender.com/prediction', {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -140,7 +140,7 @@ export default function Predict() {
     ];
 
     try {
-      const res = await fetch("http://localhost:5000/predict", {
+      const res = await fetch("https://stethx-model.onrender.com/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, name: form.name }),
