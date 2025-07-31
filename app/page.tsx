@@ -203,12 +203,23 @@ export default function Home() {
           </div>
         </div>
         <h2 className="flex justify-center text-white font-extrabold text-lg md:text-2xl py-3">
-          Top Health Articles
+          {myNews && 'Top Health Articles'}
         </h2>
-        <div className="w-full justify-evenly text-white flex flex-wrap h-[600px] overflow-y-scroll">
-          {loading && "Loading Articles..."}
-          {myNews && myNews.map((news: NewsArticle, idx: number) => <NewsCard key={idx} article={news} />)}
-        </div>
+        {
+          loading && (
+            <div className="flex justify-center items-center h-[600px]">
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white"></div>
+            </div>
+          )
+        }
+        {
+          myNews && (
+            <div className="w-full justify-evenly text-white flex flex-wrap h-[600px] overflow-y-scroll">
+            {myNews && myNews.map((news: NewsArticle, idx: number) => <NewsCard key={idx} article={news} />)}
+          </div>
+          )
+        }
+        
       </div>
 
       <img 
