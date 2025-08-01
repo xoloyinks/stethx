@@ -8,7 +8,6 @@ import auth from "@/components/auth";
 import Cookies from "js-cookie"
 import { PositiveData, predictionData as pt, RiskAssessmentData } from "@/components/types";
 import { toast, ToastContainer } from "react-toastify";
-import Footer from "@/components/footer";
 const smokingOptions = [
   { label: "Never", value: 4 },
   { label: "No Info", value: 0 },
