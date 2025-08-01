@@ -20,8 +20,8 @@ const Terms = () => {
             <section>
               <h2 className="text-2xl text-blue-300">1. Introduction</h2>
               <p>
-                Welcome to StethX! These terms and conditions ("Terms") govern your use of our website and mobile application
-                services (collectively, "Services"). By accessing or using our Services, you agree to comply with these Terms.
+                Welcome to StethX! These terms and conditions govern your use of our website and mobile application
+                services (collectively, &quot;Services&quot;). By accessing or using our Services, you agree to comply with these Terms.
                 If you disagree with any part of these Terms, you must not use our Services.
               </p>
             </section>
