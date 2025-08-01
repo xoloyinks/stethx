@@ -1,3 +1,4 @@
+import Footer from '@/components/footer';
 import Head from 'next/head';
 
 const Terms = () => {
@@ -20,7 +21,7 @@ const Terms = () => {
             <section>
               <h2 className="text-2xl text-blue-300">1. Introduction</h2>
               <p>
-                Welcome to StethX! These terms and conditions govern your use of our website and mobile application
+                Welcome to StethX! These terms and conditions govern your use of our website
                 services (collectively, &quot;Services&quot;). By accessing or using our Services, you agree to comply with these Terms.
                 If you disagree with any part of these Terms, you must not use our Services.
               </p>
@@ -114,6 +115,8 @@ const Terms = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

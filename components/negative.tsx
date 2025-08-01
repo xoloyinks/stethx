@@ -9,7 +9,8 @@ import {
   FaUsers,
   FaBullseye,
   FaPrint,
-  FaDiagnoses
+  FaDiagnoses,
+  FaBars,
 } from 'react-icons/fa';
 import { RiUserHeartLine } from 'react-icons/ri';
 import { ReportModalProps } from './types';
@@ -22,79 +23,69 @@ export default function RiskReportModal({
   onClose
 }: ReportModalProps) {
   const [activeTab, setActiveTab] = useState<string>('keyFactors');
+  const [showSidebar, setShowSidebar] = useState(false);
 
   if (!isOpen) return null;
 
+  const navItems = [
+    { id: 'keyFactors', label: 'Key Risk Factors', icon: <FaFileMedical /> },
+    { id: 'clinical', label: 'Clinical Recommendations', icon: <FaHeartbeat /> },
+    { id: 'tests', label: 'Recommended Tests', icon: <FaStethoscope /> },
+    { id: 'interventions', label: 'Preventive Interventions', icon: <FaRunning /> },
+    { id: 'lifestyle', label: 'Lifestyle Goals', icon: <FaBullseye /> },
+    { id: 'referrals', label: 'Referrals', icon: <FaUsers /> },
+  ];
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-2xl">
-      <div className="rounded-lg shadow-2xl bg-black/50 max-w-6xl w-full max-h-[90vh] overflow-y-auto flex p-4 sm:p-8 backdrop-blur-xl">
+      <div className="rounded-lg shadow-2xl bg-black/50 max-w-6xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row p-4 sm:p-8 backdrop-blur-xl relative">
 
-        {/* Sidebar Navigation */}
-        <div className="flex flex-col w-1/4 border-r-2 border-gray-400/10 p-4 text-white space-y-4">
-          <h2 className="text-2xl font-bold mb-6">Report Navigation</h2>
+        {/* Toggle button (mobile only) */}
+        <button
+          className="md:hidden text-white text-xl absolute top-4 left-4 z-50"
+          onClick={() => setShowSidebar(true)}
+          aria-label="Open sidebar"
+        >
+          <FaBars />
+        </button>
 
-          <button
-            className={`flex items-center text-sm font-semibold p-2 rounded-md hover:bg-blue-200/50 ${
-              activeTab === 'keyFactors' ? 'bg-blue-300/70' : ''
-            }`}
-            onClick={() => setActiveTab('keyFactors')}
-          >
-            <FaFileMedical className="mr-2" /> Key Risk Factors
-          </button>
+        {/* Mobile backdrop */}
+        {showSidebar && (
+          <div
+            className="fixed inset-0 z-40 bg-black/60 md:hidden"
+            onClick={() => setShowSidebar(false)}
+          />
+        )}
 
-          <button
-            className={`flex items-center text-sm font-semibold p-2 rounded-md hover:bg-blue-200/50 ${
-              activeTab === 'clinical' ? 'bg-blue-300/70' : ''
-            }`}
-            onClick={() => setActiveTab('clinical')}
-          >
-            <FaHeartbeat className="mr-2" /> Clinical Recommendations
-          </button>
-
-          <button
-            className={`flex items-center text-sm font-semibold p-2 rounded-md hover:bg-blue-200/50 ${
-              activeTab === 'tests' ? 'bg-blue-300/70' : ''
-            }`}
-            onClick={() => setActiveTab('tests')}
-          >
-            <FaStethoscope className="mr-2" /> Recommended Tests
-          </button>
-
-          <button
-            className={`flex items-center text-sm font-semibold p-2 rounded-md hover:bg-blue-200/50 ${
-              activeTab === 'interventions' ? 'bg-blue-300/70' : ''
-            }`}
-            onClick={() => setActiveTab('interventions')}
-          >
-            <FaRunning className="mr-2" /> Preventive Interventions
-          </button>
-
-          <button
-            className={`flex items-center text-sm font-semibold p-2 rounded-md hover:bg-blue-200/50 ${
-              activeTab === 'lifestyle' ? 'bg-blue-300/70' : ''
-            }`}
-            onClick={() => setActiveTab('lifestyle')}
-          >
-            <FaBullseye className="mr-2" /> Lifestyle Goals
-          </button>
-
-          <button
-            className={`flex items-center text-sm font-semibold p-2 rounded-md hover:bg-blue-200/50 ${
-              activeTab === 'referrals' ? 'bg-blue-300/70' : ''
-            }`}
-            onClick={() => setActiveTab('referrals')}
-          >
-            <FaUsers className="mr-2" /> Referrals
-          </button>
+        {/* Sidebar */}
+        <div className={`fixed md:static top-0 left-0 h-full w-64 z-50 md:z-auto bg-black/80 backdrop-blur-md border-r border-white/10 p-4 transition-transform duration-300 ease-in-out
+          ${showSidebar ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex flex-col space-y-4`}
+        >
+          <h2 className="text-xl font-bold text-white mb-4">Report Navigation</h2>
+          {navItems.map(({ id, label, icon }) => (
+            <button
+              key={id}
+              className={`flex items-center text-sm font-semibold text-white p-2 rounded-md hover:bg-blue-200/50 transition-all ${
+                activeTab === id ? 'bg-blue-300/70' : ''
+              }`}
+              onClick={() => {
+                setActiveTab(id);
+                setShowSidebar(false); // close sidebar on mobile
+              }}
+            >
+              <span className="mr-2">{icon}</span>
+              <span className='text-left'>{label}</span> 
+            </button>
+          ))}
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-col w-3/4 pl-8 p-6">
+        <div className="flex flex-col w-full md:w-3/4 md:pl-8 mt-8 md:mt-0 p-4">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-3xl font-bold text-white">Risk Assessment Report</h2>
             <button
               onClick={onClose}
-              className="text-gray-500 hover:text-gray-300"
+              className="text-gray-300 hover:text-white"
               aria-label="Close modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,10 +94,14 @@ export default function RiskReportModal({
             </button>
           </div>
 
-          <div className='bg-whidte rounded space-y-1 w-fit py-2 font-bold text-white text-xs mb-2'>
+          {/* Patient Info */}
+          <div className='bg-white/10 rounded space-y-1 w-fit py-2 px-3 font-bold text-white text-xs mb-4'>
             <p className='flex items-center gap-2'><RiUserHeartLine /> {patientName}</p>
-            <p className='flex items-center gap-2'><FaDiagnoses /> Non Diabetic - {typeof patientConfidence === 'number' ? Math.ceil(patientConfidence * 100) + '%' : patientConfidence } confidence</p>
+            <p className='flex items-center gap-2 text-green-400'>
+              <FaDiagnoses /> Non Diabetic - {typeof patientConfidence === 'number' ? Math.ceil(patientConfidence * 100) + '%' : patientConfidence}
+            </p>
           </div>
+
           {/* Tab Content */}
           <div className="space-y-3 text-gray-300">
             {activeTab === 'keyFactors' && (
@@ -115,7 +110,13 @@ export default function RiskReportModal({
                 <p className="bg-gray-700 px-4 py-1 rounded-full w-fit text-sm">{patientData.key_risk_factor}</p>
                 <p className="text-sm text-gray-400 mt-2">{patientData.key_factor_rationale}</p>
                 <h3 className="text-xl font-semibold mt-4">Risk Level</h3>
-                <p className={`${ patientData.risk_level === 'Low' ? "bg-white text-black" : patientData.risk_level === 'Moderate' ? "bg-yellow-400 text-white" :  "bg-red-700 animate-pulse" }   text-xs font-bold px-5 py-2 rounded-full w-fit`}>{patientData.risk_level}</p>
+                <p className={`${patientData.risk_level === 'Low'
+                    ? "bg-white text-black"
+                    : patientData.risk_level === 'Moderate'
+                    ? "bg-yellow-400 text-white"
+                    : "bg-red-700 animate-pulse"} text-xs font-bold px-5 py-2 rounded-full w-fit`}>
+                  {patientData.risk_level}
+                </p>
               </>
             )}
 

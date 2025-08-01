@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { GiStethoscope } from "react-icons/gi";
 import Cookies from "js-cookie";
 import { toast, ToastContainer } from "react-toastify";
+import Footer from "@/components/footer";
 
 export default function Home() {
   const [introVisible, setIntroVisible] = useState(false);
@@ -242,6 +243,8 @@ export default function Home() {
           alt={'Blob'}
           className="absolute right-70 top-80 opacity-10 z-0 not-sm:hidden"
         />
+
+        <Footer />
     </div>
   );
 }
