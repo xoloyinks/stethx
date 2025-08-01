@@ -87,7 +87,7 @@ export default function Auth() {
                     progress: undefined,
                     theme: "dark",
                 });
-        window.location.href = '/'
+        window.location.href = '/terms'
       } catch (error) {
         console.error('Login error:', error);
         // TODO: Handle error (e.g., show error message to user)

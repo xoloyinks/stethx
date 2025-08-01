@@ -63,6 +63,14 @@ export default function Nav() {
           >
             History
           </Link>
+          <Link
+            href="/terms"
+            className={`hover:text-white transition-all ease-in-out ${
+              path === "/terms" ? "text-white font-bold" : ""
+            }`}
+          >
+            Terms & Conditions
+          </Link>
         </div>
 
         {/* Sign Out (Desktop) */}
@@ -104,6 +112,15 @@ export default function Nav() {
             onClick={() => setIsMenuOpen(false)}
           >
             History
+          </Link>
+          <Link
+            href="/terms"
+            className={`text-lg hover:text-white transition-all ease-in-out ${
+              path === "/terms" ? "text-white font-bold" : ""
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Terms & Conditions
           </Link>
           <button  onClick={handleSignout} className="text-2xl text-white ">
             <GoSignOut />
