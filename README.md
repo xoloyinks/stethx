@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🩺 DSS for Early Diabetes Detection and Prevention  
 
-## Getting Started
+## 📘 Overview  
+This project is a **Decision Support System (DSS)** that integrates **Machine Learning (ML)** and **Large Language Models (LLMs)** to assist in the **early detection and prevention of diabetes**.  
+The system predicts diabetic risk based on patient health metrics and provides contextual recommendations to address comorbidities and preventive measures.  
 
-First, run the development server:
+## 🧩 Tech Stack  
+- **Frontend:** Next.js  
+- **Backend:** Python (FastAPI) and Node JS 
+- **ML Libraries:** Scikit-learn, Pandas, NumPy  
+- **LLM Integration:** OpenAi Pre-trained Model
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ⚙️ Methodology  
+- **Machine Learning Model:** Logistic Regression  
+- **Dataset:** Publicly available Kaggle diabetes dataset (100,000 records)  
+- **Input Features:** Age, BMI, blood glucose level, HbA1c, smoking history, hypertension status, and other lifestyle factors  
+- **Evaluation Metrics:** Accuracy, Precision, Recall, F1-score, ROC-AUC  
+- **LLM Integration:** Provides interpretive analysis of model outcomes, identifies key risk factors, and suggests prevention strategies and comorbidity insights  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📊 Results  
+| Metric | Score |
+|---------|--------|
+| Accuracy | 0.96 |
+| Precision | 0.96 (Class 0) / 0.86 (Class 1) |
+| Recall | 0.99 (Class 0) / 0.61 (Class 1) |
+| F1 Score | 0.98 (Class 0) / 0.72 (Class 1) |
+| ROC-AUC | 0.96 |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The Logistic Regression model achieved strong overall accuracy and reliability, demonstrating potential for clinical application in diabetes risk assessment.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧠 System Workflow  
+1. **User Input:** Health parameters such as age, BMI, glucose levels, and lifestyle habits  
+2. **Prediction:** ML model predicts diabetic or non-diabetic status  
+3. **Analysis:** LLM interprets results, identifies risk factors and comorbidities  
+4. **Recommendation:** Personalized guidance for prevention and management
 
-## Learn More
+## 🔑 Demo Login (For Testing)
+To explore the system’s features, you can log in using the demo credentials below:
 
-To learn more about Next.js, take a look at the following resources:
+**Email:** xoloyinks@gmail.com  
+**Password:** Ayocruzo123.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
