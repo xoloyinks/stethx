@@ -8,7 +8,7 @@ The system predicts diabetic risk based on patient health metrics and provides c
 - **Frontend:** Next.js  
 - **Backend:** Python (FastAPI) and Node JS 
 - **ML Libraries:** Scikit-learn, Pandas, NumPy  
-- **LLM Integration:** Deepseek Pre-trained Model
+- **LLM Integration:** OpenAi Pre-trained Model
 
 ## ⚙️ Methodology  
 - **Machine Learning Model:** Logistic Regression  
