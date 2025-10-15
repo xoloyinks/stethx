@@ -18,6 +18,8 @@ export default function Home() {
   const [mostCommonContributingFactor, setMostCommonContributingFactor] = useState<string>("---");
   const [mostAffectedGender, setMostAffectedGender] = useState<string>("---");
 
+  console.log(history)
+
   useEffect(() => {
     auth();
     const fetchNews = async () => {
