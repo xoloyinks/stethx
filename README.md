@@ -37,12 +37,6 @@ The Logistic Regression model achieved strong overall accuracy and reliability, 
 ## 🔑 Demo Login (For Testing)
 To explore the system’s features, you can log in using the demo credentials below:
 
-**Email:** demo_user@example.com  
-**Password:** DemoPassword123  
+**Email:** xoloyinks@gmail.com  
+**Password:** Ayocruzo123.  
 
-
-### Installation  
-```bash
-git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
-pip install -r requirements.txt
