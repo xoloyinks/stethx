@@ -140,7 +140,7 @@ export default function Predict() {
     ];
 
     try {
-      const res = await fetch("https://stethx-model.onrender.com/predict", {
+      const res = await fetch("http://stethx-model.onrender.com/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, name: form.name }),

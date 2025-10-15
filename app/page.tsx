@@ -1,7 +1,6 @@
 "use client";
 
 import auth from "@/components/auth";
-import Intro from "@/components/intro";
 import NewsCard from "@/components/NewsCard";
 import PieChart from "@/components/pie";
 import { NewsArticle, predictionData } from "@/components/types";
@@ -12,7 +11,6 @@ import { toast, ToastContainer } from "react-toastify";
 import Footer from "@/components/footer";
 
 export default function Home() {
-  const [introVisible, setIntroVisible] = useState(false);
   const [myNews, setNews] = useState<NewsArticle[] | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
@@ -22,24 +20,11 @@ export default function Home() {
 
   useEffect(() => {
     auth();
-    const hasShownIntro = sessionStorage.getItem("intro_shown");
-    if(history){
-      console.log('Good to go!')
-    }
-
-    if (!hasShownIntro) {
-      setIntroVisible(true);
-      setTimeout(() => {
-        setIntroVisible(false);
-        sessionStorage.setItem("intro_shown", "true");
-      }, 3000);
-    }
-
     const fetchNews = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://newsapi.org/v2/top-headlines?category=health&apiKey=c6525b65c70d40f6a82eb80afff57b14"
+          `https://newsapi.org/v2/top-headlines?category=health&apiKey=${process.env.NEXT_PUBLIC_NEWS_API}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -156,8 +141,7 @@ export default function Home() {
   return (
     <div className="w-screen overflow-x-hidden relative bg-gray-950">
       <ToastContainer />
-        
-      {introVisible && <Intro />}
+      
       <div className="flex flex-col justify-between h-full">
         <h2 className="flex justify-center text-white font-extrabold text-lg md:text-2xl py-3">
           Report Analysis

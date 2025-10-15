@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaCircleRadiation } from 'react-icons/fa6'
 
-export default function Intro() {
+export default function Intro(){
   const fullText = "StethX";
   const [displayed, setDisplayed] = useState("");
 
@@ -16,10 +16,8 @@ export default function Intro() {
     return () => clearInterval(interval);
   }, []);
 
-
-
   return (
-    <div className='from-slate-950 to-teal-900 bg-gradient-to-br w-screen h-screen absolute transition-all ease-in-out'>
+    <div className='bg-slate-950 w-screen h-screen absolute transition-all ease-in-out'>
       <FaCircleRadiation className='absolute z-10 text-[300px] text-slate-900 animate-spin top-1/2' />
       <div className='absolute z-50 w-screen h-screen flex flex-col items-center justify-center backdrop-blur-2xl bg-black/40'>
         <p

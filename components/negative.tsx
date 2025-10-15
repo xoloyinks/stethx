@@ -37,8 +37,8 @@ export default function RiskReportModal({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-2xl">
-      <div className="rounded-lg shadow-2xl bg-black/50 max-w-6xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row p-4 sm:p-8 backdrop-blur-xl relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950">
+      <div className="rounded-lg shadow-2xl bg-black max-w-6xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row p-4 sm:p-8  relative">
 
         {/* Toggle button (mobile only) */}
         <button

@@ -30,9 +30,8 @@ export default function DiabetesReportModal({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-2xl">
-      <div className="bg-black/50 rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row p-4 sm:p-6 backdrop-blur-xl relative">
-        
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950">
+      <div className="bg-black rounded-lg shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row p-4 sm:p-6 relative">
         {/* Mobile sidebar toggle */}
         <button
           className="md:hidden text-white text-xl absolute top-4 left-4 z-50"

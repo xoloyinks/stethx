@@ -10,7 +10,7 @@ const Terms = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="bg-gray-950 text-white min-h-screen">
+      <div className="bg-gray-950 mx-auto sm:w-[60%] w-full text-white min-h-screen">
         <div className="container mx-auto px-6 py-12">
           <div className="text-center mb-10">
             <h1 className="text-4xl font-semibold text-blue-400">Terms and Conditions</h1>
