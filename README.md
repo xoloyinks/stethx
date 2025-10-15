@@ -5,7 +5,7 @@ This project is a **Decision Support System (DSS)** that integrates **Machine Le
 The system predicts diabetic risk based on patient health metrics and provides contextual recommendations to address comorbidities and preventive measures.  
 
 ## 🧩 Tech Stack  
-- **Frontend:** Next.js (or your UI framework, if applicable)  
+- **Frontend:** Next.js  
 - **Backend:** Python (FastAPI) and Node JS 
 - **ML Libraries:** Scikit-learn, Pandas, NumPy  
 - **LLM Integration:** Deepseek Pre-trained Model
