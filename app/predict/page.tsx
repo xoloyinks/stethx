@@ -152,6 +152,7 @@ export default function Predict() {
       }
 
       const results = await res.json();
+      localStorage.setItem('historyUpdated', 'true');
       if (results) {
         if (results.prediction === "Diabetic") {
           setIsModalOpen(true);
@@ -175,9 +176,6 @@ export default function Predict() {
         decision_support: JSON.stringify(results.clinical_decision_support),
         confidence: Math.ceil(results.confidence * 100) + '%'
       }
-
-
-
       setPredictionDetails(predictionData);
     } catch (err) {
       const error = err as Error
@@ -225,10 +223,10 @@ export default function Predict() {
       ) : null}
 
       {/* Form Card */}
-      <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 text-white border border-gray-700">
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-teal-400 mb-6">
+      <div className="w-full max-w-md sm:max-w-lg md:max-w-4xl rounded-xl shadow-lg p-6 sm:p-8 text-white ">
+        {/* <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-teal-400 mb-6">
           Diabetes Prediction
-        </h1>
+        </h1> */}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div>

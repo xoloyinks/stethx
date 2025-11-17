@@ -26,6 +26,7 @@ export default function History() {
   }, []);
 
   useEffect(() => {
+    const historyUpdated = localStorage.getItem('historyUpdated');
     const fetchHistory = async () => {
       const token = Cookies.get("token");
       try {
@@ -55,6 +56,8 @@ export default function History() {
         const res = await response.json();
         const historyData: predictionData[] = res.data || [];
         setHistory(historyData);
+        JSON.stringify(localStorage.setItem('history', JSON.stringify(res.data)));
+        localStorage.setItem('historyUpdated', 'false')
       } catch (err) {
         console.error("Error fetching history:", err);
         toast.error("Error fetching history", {
@@ -71,8 +74,14 @@ export default function History() {
         setLoading(false);
       }
     };
-    fetchHistory();
+    if(localStorage.getItem('history') && (historyUpdated === 'false')){
+      let localHistory = JSON.parse(localStorage.getItem('history') || '');
+      setHistory(localHistory)
+    }else{
+      fetchHistory();
+    }
   }, []);
+
 
   const toggleRowVisibility = (id: string) => {
     setHiddenRows((prev) =>

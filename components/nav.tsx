@@ -17,11 +17,13 @@ export default function Nav() {
 
   const handleSignout = () => {
      Cookies.remove('token');
+     localStorage.removeItem('historyUpdated');
+     localStorage.removeItem('history');
      window.location.href = '/login'
   }
 
   return (
-    <section className={`top-0 z-50 text-gray-400 font-semibold text-md py-6 shadow-lg ${path === '/login' ? 'hidden' : 'block'}`}>
+    <section className={`top-0 z-50 text-gray-400 font-semibold text-md py-6 shadow-lg lg:px-5 border-b border-gray-800 ${path === '/login' ? 'hidden' : 'block'}`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-3xl md:text-4xl md:w-[20%] font-bold bg-gradient-to-r from-teal-400 via-sky-500 to-indigo-500 text-transparent bg-clip-text drop-shadow-[0_0_5px_rgba(0,0,255,0.7)]">

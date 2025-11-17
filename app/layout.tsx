@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className}`}
       >
-        <section className="w-screen h-fit min-h-screen relative bg-gray-950">
+        <section className="w-full overflow-x-hidden h-fit min-h-screen relative bg-gray-950">
           <Nav />
           {children}
         </section>
