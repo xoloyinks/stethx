@@ -75,7 +75,7 @@ export default function History() {
       }
     };
     if(localStorage.getItem('history') && (historyUpdated === 'false')){
-      let localHistory = JSON.parse(localStorage.getItem('history') || '');
+      const localHistory = JSON.parse(localStorage.getItem('history') || '');
       setHistory(localHistory)
     }else{
       fetchHistory();
